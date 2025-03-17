@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" 
+          content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <link href=
+"https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" 
+          rel="stylesheet">
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="container">
+        <form class="max-w-md mx-auto p-6 
+                    bg-white rounded-lg 
+                    shadow-md border 
+                    border-green-500" method="post" action="BMICalPost">
+            <h1 class="text-2xl font-semibold 
+                       mb-4 text-center">
+                BMI Calculator
+            </h1>
+            <div class="mb-4">
+                <label for="height" class="block mb-2">Height:</label>
+                <div class="flex">
+                    <input type="number" 
+                           id="height" 
+                           class="form-input flex-1 mr-2" 
+                           placeholder="Enter height" name="height">
+                    <select id="heightUnit" class="form-select w-24">
+                        <option value="cm">cm</option>
+                    </select>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label for="weight" class="block mb-2">Weight:</label>
+                <div class="flex">
+                    <input type="number" 
+                           id="weight" 
+                           class="form-input flex-1 mr-2" 
+                           placeholder="Enter weight" name="weight">
+                    <select id="weightUnit" class="form-select w-24">
+                        <option value="kg">kg</option>
+                    </select>
+                </div>
+            </div>
+            <input id="calculate" 
+            		type="submit"
+                    class="bg-blue-500 text-white 
+                           font-semibold py-2 px-4 
+                           rounded w-full mb-4">
+            <div id="result" class="text-center" th:text=${kq}></div>
+            <h1 th:text=${thongbao}></h1>
+        </form>
+    </div>
+</body>
+</html>
