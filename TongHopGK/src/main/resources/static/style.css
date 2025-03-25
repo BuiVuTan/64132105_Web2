@@ -1,22 +1,32 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
 header {
     background-color: #f0f0f0;
-    padding: 20px;
     text-align: center;
 }
 
 header .bg-image {
-    background-color: lightblue;
-    padding: 20px;
-    margin-bottom: 10px;
+    padding: 10px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+}
+.bg-image{
+    background-image: url(" https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5b436e2a-4bae-422c-9b37-e3352c5ad4c6/dgq7ov5-0308ac6b-0943-4765-af70-e4be48c6318d.png/v1/fill/w_1131,h_707,q_70,strp/windows_xp_wallpaper_corgi_by_coswine_dgq7ov5-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9ODAwIiwicGF0aCI6IlwvZlwvNWI0MzZlMmEtNGJhZS00MjJjLTliMzctZTMzNTJjNWFkNGM2XC9kZ3E3b3Y1LTAzMDhhYzZiLTA5NDMtNDc2NS1hZjcwLWU0YmU0OGM2MzE4ZC5wbmciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.yjY1GJoVCLqRPipEkpP4m4D6VbtTshpg-ciLXDle8lc");
+    background-size: cover;
+    background-position: center;
+    height: 200px;
+}
+
+header .bg-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+header nav {
+    background-color: #eee;
+    padding: 10px;
 }
 
 header nav ul {
@@ -24,11 +34,16 @@ header nav ul {
     padding: 0;
     margin: 0;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 header nav li {
     margin: 0 10px;
+}
+
+header nav li a {
+    text-decoration: none;
+    color: #333;
 }
 
 main {
@@ -45,11 +60,14 @@ main .content {
 main .sidebar {
     flex: 1;
     text-align: center;
+    height: 300px;
+    overflow: hidden;
 }
 
 main .sidebar img {
     max-width: 100%;
-    height: auto;
+    max-height: 100%;
+    object-fit: contain;
 }
 
 footer {
@@ -57,6 +75,17 @@ footer {
     color: white;
     text-align: center;
     padding: 10px;
+    margin-top: auto;
+    width: 100%;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 @media (max-width: 768px) {

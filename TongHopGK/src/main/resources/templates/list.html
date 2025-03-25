@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>TongHopGK</title>
+    <title>Danh sách sinh viên</title>
     <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 <body>
-
 <header>
     <div class="bg-image">
     </div>
@@ -18,20 +17,27 @@
         </ul>
     </nav>
 </header>
-
 <main>
-    <section class="content">
-        <h1>Chào mừng đến với trang chủ!</h1>
-        <p>Đây là nội dung chính của trang web.</p>
-    </section>
-    <aside class="sidebar">
-        <img src="https://www.meme-arsenal.com/memes/907edd2669225a928c50f234cd993bc8.jpg" alt="Ảnh">
-    </aside>
+    <h1>Danh sách sinh viên</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>MSSV</th>
+            <th>Họ tên</th>
+            <th>Điểm TB</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="sv : ${dsSV}">
+            <td th:text="${sv.mssv}"></td>
+            <td th:text="${sv.hoTen}"></td>
+            <td th:text="${#numbers.formatDecimal(sv.diemTb,1,1)}"></td>
+        </tr>
+        </tbody>
+    </table>
 </main>
-
 <footer>
     <p>@ Bùi Vũ Tân</p>
 </footer>
-
 </body>
 </html>
