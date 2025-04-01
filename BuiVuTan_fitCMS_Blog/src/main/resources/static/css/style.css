@@ -1,0 +1,66 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Để footer luôn ở dưới cùng */
+}
+
+.dashboard-header {
+    background-color: #f0f0f0;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between; /* Đẩy logo và username về hai đầu */
+    align-items: center;
+}
+
+.dashboard-header .logo img {
+    max-width: 150px;
+    height: auto;
+}
+
+.dashboard-header .username p {
+    margin: 0;
+}
+
+.dashboard-content {
+    display: flex;
+    flex-grow: 1; /* Cho phép content chiếm phần còn lại của không gian */
+}
+
+.dashboard-sidebar {
+    width: 200px;
+    background-color: #eee;
+    padding: 20px;
+}
+
+.dashboard-sidebar h2 {
+    margin-top: 0;
+}
+
+.dashboard-sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.dashboard-sidebar li {
+    margin-bottom: 10px;
+}
+
+.dashboard-main-content {
+    flex-grow: 1;
+    padding: 20px;
+    text-align: center; /* Để "Content" ở giữa */
+    background-color: #ddd; /* Cho dễ thấy */
+}
+
+.dashboard-footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}

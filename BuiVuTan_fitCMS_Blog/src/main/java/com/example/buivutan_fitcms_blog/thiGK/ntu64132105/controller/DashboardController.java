@@ -9,7 +9,7 @@ public class DashboardController {
 
     @GetMapping("/")
     public String dashboard(Model model) {
-        model.addAttribute("username", "Bùi Vũ Tân");
+        model.addAttribute("username", "Bui Vu Tan");
         return "dashboard";
     }
 

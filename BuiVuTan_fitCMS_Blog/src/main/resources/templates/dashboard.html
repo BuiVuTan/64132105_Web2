@@ -5,21 +5,34 @@
   <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-<h1>Dashboard</h1>
-<p th:text="'Bùi Vũ Tân'"></p>
+<div class="dashboard-container">
+  <div class="dashboard-header">
+    <div class="logo">
+      <img src="https://nhanluckhanhhoa.vn/tenants/sihrm/mods/sihrm/tochuc/LOGO_NTU1.jpg" alt="Logo" width="150">
+    </div>
+    <div class="username">
+      <p th:text="'Bui Vu Tan'"></p>
+    </div>
+  </div>
 
-<h2>Pages</h2>
-<ul>
-  <li><a th:href="@{/page/all}">Page - List</a></li>
-  <li><a th:href="@{/page/new}">Page - Addnew</a></li>
-</ul>
+  <div class="dashboard-content">
+    <div class="dashboard-sidebar">
+      <h2>Dashboard</h2>
+      <ul>
+        <li><a th:href="@{/page/all}">Page - List</a></li>
+        <li><a th:href="@{/page/new}">Page - Addnew</a></li>
+        <li><a th:href="@{/post/all}">Post - List</a></li>
+        <li><a th:href="@{/post/new}">Post - Addnew</a></li>
+      </ul>
+    </div>
+    <div class="dashboard-main-content">
+      <p>Content</p> <!-- Placeholder cho nội dung chính -->
+    </div>
+  </div>
 
-<h2>Posts</h2>
-<ul>
-  <li><a th:href="@{/post/all}">Post - List</a></li>
-  <li><a th:href="@{/post/new}">Post - Addnew</a></li>
-</ul>
-
-<p>©2025 Bùi Vũ Tân</p>
+  <div class="dashboard-footer">
+    <p>©2025 Bui Vu Tan - FIT.NTU</p>
+  </div>
+</div>
 </body>
 </html>
