@@ -4,11 +4,20 @@ body {
     padding: 0;
 }
 
+
+.container {
+    background-color: #ddd;
+    padding: 20px;
+    text-align: center;
+}
+
+
 .dashboard-container {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
+
 
 .dashboard-header {
     background-color: #f0f0f0;
@@ -16,15 +25,23 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 1px solid #ccc;
+}
+
+
+.dashboard-header .logo {
+    margin-right: auto;
 }
 
 .dashboard-header .logo img {
-    max-width: 150px;
+    max-width: 60px;
     height: auto;
+    vertical-align: middle;
 }
 
-.dashboard-header .username p {
-    margin: 0;
+
+.dashboard-header .username {
+    margin-left: auto;
 }
 
 .dashboard-content {
@@ -32,14 +49,18 @@ body {
     flex-grow: 1;
 }
 
+
 .dashboard-sidebar {
     width: 200px;
     background-color: #eee;
     padding: 20px;
+    border-right: 1px solid #ccc;
 }
 
 .dashboard-sidebar h2 {
     margin-top: 0;
+    font-size: 1.2em;
+    margin-bottom: 10px;
 }
 
 .dashboard-sidebar ul {
@@ -51,6 +72,15 @@ body {
     margin-bottom: 10px;
 }
 
+.dashboard-sidebar li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+}
+
+
 .dashboard-main-content {
     flex-grow: 1;
     padding: 20px;
@@ -58,9 +88,76 @@ body {
     background-color: #ddd;
 }
 
+
 .dashboard-footer {
     background-color: #333;
     color: white;
     text-align: center;
     padding: 10px;
+    border-top: 1px solid #ccc;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+
+th {
+    background-color: #f2f2f2;
+}
+
+
+a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+.container {
+    background-color: #ddd;
+    padding: 20px;
+    text-align: center;
+}
+
+
+.container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+
+.container th, .container td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+
+.container th {
+    background-color: #f2f2f2;
+}
+
+
+.container a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.container a:hover {
+    text-decoration: underline;
 }
