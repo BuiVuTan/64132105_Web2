@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="grid-container">
+    <header class="header">
+        <div class="logo">
+            <img th:src="@{/images/logo.png}" alt="Logo" width="400">
+        </div>
+        <div class="username">Bùi Vũ Tân</div>
+    </header>
+    <aside class="sidebar">
+        <div class="dashboard-title">Dasdboard</div>
+        <ul>
+            <li><a th:href="@{/page/all}">Page - List</a></li>
+            <li><a th:href="@{/page/new}">Page - Addnew</a></li>
+            <li><a th:href="@{/post/all}">Post - List</a></li>
+            <li><a th:href="@{/post/new}">Post - Addnew</a></li>
+        </ul>
+    </aside>
+    <main class="content">
+        <h2>Thông tin cá nhân</h2>
+        <p><strong>Tên:</strong> Bùi Vũ Tân</p>
+        <p><strong>Ngày sinh:</strong> 14/9/2004</p>
+        <p><strong>Quê quán:</strong> Nha Trang</p>
+        <p><strong>Zodiac:</strong> Xử Nữ</p>
+        <p><strong>Chuyên ngành:</strong> Công nghệ thông tin</p>
+        <p><strong>MSSV:</strong> 64132105</p>
+    </main>
+    <footer class="footer">
+        ©2025 by Bùi Vũ Tân - FIT.NTU
+    </footer>
+</div>
+</body>
+</html>

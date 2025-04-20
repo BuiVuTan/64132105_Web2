@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Post</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="page-post-container">
+    <h1>Edit Post</h1>
+    <a th:href="@{/}">Back to Dashboard</a>
+
+    <table>
+        <tr>
+            <td>
+                <form th:action="@{/post/edit/{id}(id=${post.id})}" method="post">
+                    <input type="hidden" th:value="${post.id}" />
+                    <div>
+                        <label for="title">Title:</label>
+                        <input type="text" id="title" name="title" th:value="${post.title}" required>
+                    </div>
+                    <div>
+                        <label for="content">Content:</label>
+                        <textarea id="content" name="content" rows="4" cols="50" th:text="${post.content}"></textarea>
+                    </div>
+                    <div>
+                        <label for="categoryId">Category ID:</label>
+                        <input type="number" id="categoryId" name="categoryId" th:value="${post.categoryId}">
+                    </div>
+                    <button type="submit">Save</button>
+                </form>
+                <a th:href="@{/post/view/{id}(id=${post.id})}">View</a> |
+                <a th:href="@{/post/all}">Back to Post List</a>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

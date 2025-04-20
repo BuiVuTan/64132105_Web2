@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Page List</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="page-post-container">
+    <h1>Page List</h1>
+    <a th:href="@{/}" class="back-to-dashboard">Back to Dashboard</a>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Page Name</th>
+            <th>Parent Page ID</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="page : ${pages}">
+            <td th:text="${page.id}"></td>
+            <td th:text="${page.pageName}"></td>
+            <td th:text="${page.parentPageId}"></td>
+            <td>
+                <a th:href="@{/page/view/{id}(id=${page.id})}">View</a> |
+                <a th:href="@{/page/edit/{id}(id=${page.id})}">Edit</a> |
+                <a th:href="@{/page/delete/{id}(id=${page.id})}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/page/new}" class="button">Add New Page</a>
+</div>
+</body>
+</html>

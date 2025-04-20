@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>View Post</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="page-post-container">
+    <h1>View Post</h1>
+    <a th:href="@{/}">Back to Dashboard</a>
+
+    <table>
+        <tr>
+            <td>
+                <p th:text="'ID: ' + ${post.id}"></p>
+                <p th:text="'Title: ' + ${post.title}"></p>
+                <p th:text="'Content: ' + ${post.content}"></p>
+                <p th:text="'Category ID: ' + ${post.categoryId}"></p>
+                <a th:href="@{/post/edit/{id}(id=${post.id})}">Edit</a> |
+                <a th:href="@{/post/delete/{id}(id=${post.id})}">Delete</a> |
+                <a th:href="@{/post/all}">Back to Post List</a>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
