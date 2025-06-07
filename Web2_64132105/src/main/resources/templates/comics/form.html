@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      th:replace="~{layout/main :: html}">
+<head>
+    <title th:text="${comic.id != null ? 'Edit Comic' : 'New Comic'}">Comic Form</title>
+</head>
+<body>
+    <div id="pageTitle" th:text="${comic.id != null ? 'Edit Comic' : 'New Comic'}">Comic Form</div>
+    
+    <div id="content">
+        <div class="container">
+            <!-- Success/Error Messages -->
+            <div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show" role="alert">
+                [[${successMessage}]]
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            <div th:if="${errorMessage}" class="alert alert-danger alert-dismissible fade show" role="alert">
+                [[${errorMessage}]]
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            
+            <form th:action="${comic.id != null ? '/comics/' + comic.id : '/comics'}"
+                  method="post"
+                  enctype="multipart/form-data"
+                  th:object="${comic}"
+                  class="needs-validation"
+                  novalidate>
+                
+                <!-- Title -->
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title <span class="text-danger">*</span></label>
+                    <input type="text" 
+                           class="form-control" 
+                           th:class="${#fields.hasErrors('title')} ? 'form-control is-invalid' : 'form-control'"
+                           id="title" 
+                           th:field="*{title}"
+                           minlength="1"
+                           maxlength="255" 
+                           required>
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">
+                        Please enter a title (1-255 characters).
+                    </div>
+                </div>
+                
+                <!-- Author -->
+                <div class="mb-3">
+                    <label for="author" class="form-label">Author <span class="text-danger">*</span></label>
+                    <input type="text" 
+                           class="form-control"
+                           th:class="${#fields.hasErrors('author')} ? 'form-control is-invalid' : 'form-control'"
+                           id="author" 
+                           th:field="*{author}"
+                           minlength="1"
+                           maxlength="255"
+                           required>
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">
+                        Please enter an author name (1-255 characters).
+                    </div>
+                </div>
+                
+                <!-- Description -->
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description <span class="text-danger">*</span></label>
+                    <textarea class="form-control"
+                              th:class="${#fields.hasErrors('description')} ? 'form-control is-invalid' : 'form-control'"
+                              id="description" 
+                              th:field="*{description}"
+                              minlength="10"
+                              maxlength="2000" 
+                              rows="3"
+                              required></textarea>
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">
+                        Please enter a description (10-2000 characters).
+                    </div>
+                </div>
+                
+                <!-- Status -->
+                <div class="mb-3">
+                    <label for="status" class="form-label">Status <span class="text-danger">*</span></label>
+                    <select class="form-select"
+                            th:class="${#fields.hasErrors('status')} ? 'form-select is-invalid' : 'form-select'"
+                            id="status" 
+                            th:field="*{status}" 
+                            required>
+                        <option value="">Choose a status</option>
+                        <option value="ONGOING">Ongoing</option>
+                        <option value="COMPLETED">Completed</option>
+                        <option value="DROPPED">Dropped</option>
+                    </select>
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('status')}" th:errors="*{status}">
+                        Please select a status.
+                    </div>
+                </div>
+                
+                <!-- Categories -->
+                <div class="mb-3">
+                    <label for="categoryId" class="form-label">Category <span class="text-danger">*</span></label>
+                    <select class="form-select"
+                            th:class="${errorMessage != null} ? 'form-select is-invalid' : 'form-select'"
+                            id="categoryId" 
+                            name="categoryId" 
+                            required>
+                        <option value="">Choose a category</option>
+                        <option th:each="category : ${allCategories}"
+                                th:value="${category.id}"
+                                th:text="${category.name}"
+                                th:selected="${comic.category != null && comic.category.id == category.id}">
+                            Category Name
+                        </option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Please select a category.
+                    </div>
+                </div>
+                
+                <!-- Cover Image -->
+                <div class="mb-3">
+                    <label for="coverFile" class="form-label">Cover Image <span class="text-danger" th:if="${comic.id == null}">*</span></label>
+                    <input type="file" 
+                           class="form-control"
+                           th:class="${errorMessage != null} ? 'form-control is-invalid' : 'form-control'"
+                           id="coverFile" 
+                           name="coverFile" 
+                           accept="image/*"
+                           th:required="${comic.id == null}">
+                    <div class="invalid-feedback">
+                        Please select a cover image.
+                    </div>
+                    
+                    <!-- Preview current image if exists -->
+                    <div th:if="*{coverImage != null}" class="mt-2">
+                        <img th:src="*{coverImage}" 
+                             class="img-thumbnail" 
+                             style="max-height: 200px;" 
+                             alt="Current Cover">
+                        <p class="text-muted small">Current cover image will be kept if no new image is uploaded.</p>
+                    </div>
+                </div>
+                
+                <!-- Submit Button -->
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <a th:href="@{/comics}" class="btn btn-secondary me-md-2">Cancel</a>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i>
+                        <span th:text="${comic.id != null ? 'Update Comic' : 'Create Comic'}">Submit</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Form Validation Script -->
+    <script>
+    (function () {
+        'use strict'
+        
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation')
+        
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                        
+                        // Find first invalid field and focus it
+                        const firstInvalid = form.querySelector(':invalid');
+                        if (firstInvalid) {
+                            firstInvalid.focus();
+                        }
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+    </script>
+</body>
+</html> 

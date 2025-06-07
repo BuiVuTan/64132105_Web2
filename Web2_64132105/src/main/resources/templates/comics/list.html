@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      th:replace="~{layout/main :: html}">
+<head>
+    <title>Comics</title>
+</head>
+<body>
+    <div id="pageTitle">Comics</div>
+    
+    <div id="content">
+        <div class="container">
+            <!-- Success/Error Messages -->
+            <div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show" role="alert">
+                [[${successMessage}]]
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            <div th:if="${errorMessage}" class="alert alert-danger alert-dismissible fade show" role="alert">
+                [[${errorMessage}]]
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            
+            <!-- Category Title if viewing by category -->
+            <div th:if="${category != null}" class="mb-4">
+                <h2 th:text="${category.name + ' Comics'}">Category Comics</h2>
+                <p class="text-muted" th:text="${category.description}">Category description</p>
+            </div>
+            
+            <!-- Comics Grid -->
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+                <div class="col" th:each="comic : ${comics}">
+                    <div class="card h-100 comic-card">
+                        <img th:src="${comic.coverImage != null ? comic.coverImage : '/images/default-cover.jpg'}"
+                             class="card-img-top comic-cover" alt="Comic Cover">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${comic.title}">Comic Title</h5>
+                            <p class="card-text text-muted">
+                                <small>
+                                    <i class="fas fa-user"></i> 
+                                    <span th:text="${comic.author}">Author</span>
+                                </small>
+                            </p>
+                            <p class="card-text" th:text="${#strings.length(comic.description) > 100 ? 
+                                #strings.substring(comic.description, 0, 97) + '...' : comic.description}">
+                                Description
+                            </p>
+                        </div>
+                        <div class="card-footer bg-transparent border-0">
+                            <a th:href="@{/comics/{id}(id=${comic.id})}" class="btn btn-outline-primary w-100">
+                                Read More <i class="fas fa-arrow-right ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Empty State -->
+            <div th:if="${comics.empty}" class="text-center py-5">
+                <i class="fas fa-book fa-3x text-muted mb-3"></i>
+                <h3>No Comics Found</h3>
+                <p class="text-muted">There are no comics available at the moment.</p>
+                <a href="/comics/new" class="btn btn-primary" sec:authorize="isAuthenticated()">
+                    <i class="fas fa-plus"></i> Add New Comic
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

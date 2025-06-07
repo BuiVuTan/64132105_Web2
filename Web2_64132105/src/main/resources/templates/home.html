@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/main :: html}">
+<head>
+    <title>Home</title>
+</head>
+<body>
+    <div id="pageTitle">Home</div>
+    
+    <div id="content">
+        <!-- Hero Section -->
+        <section class="text-center py-5 mb-5">
+            <h1 class="display-4 fw-bold mb-4">Welcome to Comic Web</h1>
+            <p class="lead text-muted mb-5">Store and search your favorite comics online</p>
+        </section>
+
+        <!-- Featured Section -->
+        <section class="mb-5">
+            <h2 class="mb-4">Featured Comics</h2>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+                <div class="col" th:each="comic : ${comics}">
+                    <div class="card h-100 comic-card">
+                        <div class="position-relative">
+                            <img th:src="${comic.coverImage != null ? comic.coverImage : '/images/default-cover.jpg'}"
+                                 class="card-img-top comic-cover" alt="Comic Cover">
+                            <span class="badge position-absolute top-0 end-0 m-3"
+                                  th:classappend="${comic.status == 'ONGOING' ? 'bg-primary' : 
+                                      (comic.status == 'COMPLETED' ? 'bg-success' : 'bg-secondary')}"
+                                  th:text="${comic.status}">Status</span>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${comic.title}">Comic Title</h5>
+                            <p class="card-text text-muted mb-3">
+                                <small>
+                                    <i class="fas fa-user"></i> 
+                                    <span th:text="${comic.author}">Author</span>
+                                </small>
+                            </p>
+                            <p class="card-text" th:text="${#strings.length(comic.description) > 100 ? 
+                                #strings.substring(comic.description, 0, 97) + '...' : comic.description}">
+                                Description
+                            </p>
+                        </div>
+                        <div class="card-footer bg-transparent border-0">
+                            <a th:href="@{/comics/{id}(id=${comic.id})}" class="btn btn-outline-primary w-100">
+                                Read More <i class="fas fa-arrow-right ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section>
+            <h2 class="mb-4">Browse by Category</h2>
+            <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-4">
+                <div class="col" th:each="category : ${categories}">
+                    <a th:href="@{/comics/category/{id}(id=${category.id})}" 
+                       class="card h-100 text-decoration-none category-card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-bookmark mb-3 text-primary" style="font-size: 2rem;"></i>
+                            <h5 class="card-title" th:text="${category.name}">Category Name</h5>
+                            <p class="card-text text-muted" th:if="${category.comics != null}">
+                                <small th:text="${category.comics.size() + ' comics'}">0 comics</small>
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html> 
